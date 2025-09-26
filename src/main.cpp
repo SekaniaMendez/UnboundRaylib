@@ -1,10 +1,9 @@
 #include "controls/ControlDirectional.hpp"
-#include <cmath>
 #include <raylib.h>
 
 int main() {
-  const int screenWidth = 1280;
-  const int screenHeight = 720;
+  const int screenWidth = 1440;
+  const int screenHeight = 980;
   InitWindow(screenWidth, screenHeight, "UnboundRayLib - Texture test");
   SetTargetFPS(60);
 

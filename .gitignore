@@ -1,0 +1,30 @@
+# macOS system files
+.DS_Store
+*.swp
+
+# Build artifacts
+/game
+*.o
+*.obj
+*.exe
+*.dll
+*.dylib
+*.so
+*.a
+
+# Debug / IDE
+*.dSYM/
+build/
+dist/
+.vscode/
+.idea/
+
+# Xcode / Apple
+*.xcworkspace/
+*.xcuserstate
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+# Raylib textures / cache (if any)
+*.png~
+*.tmp
