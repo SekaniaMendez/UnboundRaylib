@@ -1,5 +1,3 @@
-
-
 /**
  * @file ControlDirectional.cpp
  * @brief Implementation of the high-level movement controller based on
@@ -40,7 +38,6 @@ void ControlDirectional::Update(float dt, Vector2 &pos, int screenW,
   // 2) Map enum to movement vector (diagonal normalized)
   Vector2 move = {0.0f, 0.0f};
   static constexpr float INV_SQRT2 = 0.70710678f; // 1/sqrt(2)
-
   switch (dirEnum_) {
   case MoveDirection::None:
     move = {0.0f, 0.0f};
@@ -71,11 +68,11 @@ void ControlDirectional::Update(float dt, Vector2 &pos, int screenW,
     break;
   }
 
-  // 3) Integrate position with constant speed
+  // 3) Integrate 2D position with constant speed
   pos.x += move.x * speed_ * dt;
   pos.y += move.y * speed_ * dt;
 
-  // 4) Optional clamping (only if screen/texture sizes were provided)
+  // 6) Optional clamping (only if screen/texture sizes were provided)
   if (screenW > 0 && screenH > 0 && texW >= 0 && texH >= 0) {
     if (pos.x < 0.0f)
       pos.x = 0.0f;

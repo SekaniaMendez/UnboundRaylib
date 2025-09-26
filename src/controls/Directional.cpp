@@ -46,6 +46,7 @@ Directional::~Directional() {}
  */
 MoveDirection Directional::Update() {
   MoveDirection currentDirection = MoveDirection::None;
+
   // 1) Sample raw keys into private booleans
   moveLeft = IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT);
   moveRight = IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT);
@@ -57,34 +58,37 @@ MoveDirection Directional::Update() {
           (moveLeft ? 1 : 0); // +1 right, -1 left, 0 both/none
   int v = (moveDown ? 1 : 0) - (moveUp ? 1 : 0); // +1 down, -1 up, 0 both/none
 
-  // 3) Map to enum (8-way)
+  // 3) Map to enum (8-way) into a base direction
+  MoveDirection base = MoveDirection::None;
   if (IsKeyDown(KEY_Q)) {
-    currentDirection = MoveDirection::UpLeft;
+    base = MoveDirection::UpLeft;
   } else if (IsKeyDown(KEY_E)) {
-    currentDirection = MoveDirection::UpRight;
+    base = MoveDirection::UpRight;
   } else if (IsKeyDown(KEY_Z)) {
-    currentDirection = MoveDirection::DownLeft;
+    base = MoveDirection::DownLeft;
   } else if (IsKeyDown(KEY_C)) {
-    currentDirection = MoveDirection::DownRight;
+    base = MoveDirection::DownRight;
   } else if (h == 0 && v == 0) {
-    currentDirection = MoveDirection::None;
+    base = MoveDirection::None;
   } else if (h < 0 && v == 0) {
-    currentDirection = MoveDirection::Left;
+    base = MoveDirection::Left;
   } else if (h > 0 && v == 0) {
-    currentDirection = MoveDirection::Right;
+    base = MoveDirection::Right;
   } else if (h == 0 && v < 0) {
-    currentDirection = MoveDirection::Up;
+    base = MoveDirection::Up;
   } else if (h == 0 && v > 0) {
-    currentDirection = MoveDirection::Down;
+    base = MoveDirection::Down;
   } else if (h < 0 && v < 0) {
-    currentDirection = MoveDirection::UpLeft;
+    base = MoveDirection::UpLeft;
   } else if (h > 0 && v < 0) {
-    currentDirection = MoveDirection::UpRight;
+    base = MoveDirection::UpRight;
   } else if (h < 0 && v > 0) {
-    currentDirection = MoveDirection::DownLeft;
-  } else { // h > 0 && v > 0
-    currentDirection = MoveDirection::DownRight;
+    base = MoveDirection::DownLeft;
+  } else {
+    base = MoveDirection::DownRight;
   }
+
+  currentDirection = base;
 
   return currentDirection;
 }

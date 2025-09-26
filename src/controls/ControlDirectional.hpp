@@ -19,6 +19,7 @@
  * @copyright All rights reserved
  */
 #pragma once
+#include "ControlDirectional.hpp"
 #include "Directional.hpp"
 #include <raylib.h>
 
@@ -73,4 +74,10 @@ private:
   MoveDirection dirEnum_ =
       MoveDirection::None; ///< Cached direction for the frame
   float speed_ = 0.0f;     ///< Movement speed in px/s
+
+  // --- One-shot jump (no gravity): applies a vertical offset only on the frame
+  // Space is pressed ---
+  bool isJumping_ = false;     // true only on the frame Space is pressed
+  float jumpY_ = 0.0f;         // vertical offset to apply this frame
+  float jumpImpulse_ = 650.0f; // visual jump height (one-shot)
 };

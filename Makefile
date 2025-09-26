@@ -1,11 +1,13 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -I/opt/homebrew/include -Isrc
+CXXFLAGS = -std=c++17 -I/opt/homebrew/include -Isrc -Isrc/camera -Isrc/controls
 LDFLAGS = -L/opt/homebrew/lib -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
 
 TARGET = game
 BUILD_DIR = build
 
-SRC := $(wildcard src/*.cpp) $(wildcard src/controls/*.cpp)
+SRC := $(wildcard src/*.cpp) \
+       $(wildcard src/controls/*.cpp) \
+       $(wildcard src/camera/*.cpp)
 OBJ := $(patsubst src/%.cpp,$(BUILD_DIR)/%.o,$(SRC))
 
 all: $(TARGET)
